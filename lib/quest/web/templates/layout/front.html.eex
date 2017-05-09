@@ -53,8 +53,8 @@
 <% end %>
 
 <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-<!--<script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
-<script src="<%= static_path(@conn, "/js/script.js") %>"></script>-->
+<script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
+<!--<script src="<%= static_path(@conn, "/js/script.js") %>"></script>-->
 
 
 </body>

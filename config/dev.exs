@@ -7,7 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :quest, Quest.Web.Endpoint,
-  http: [port: 8080],
+  http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -52,7 +52,7 @@ config :phoenix, :stacktrace_depth, 20
 config :quest, Quest.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",,
+  password: "postgres",
   database: "quest",
   hostname: "localhost",
   pool_size: 10

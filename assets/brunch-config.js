@@ -16,7 +16,6 @@ exports.config = {
       order: {
         before: [
           "js/jquery.min.js",
-          "js/bootstrap.min.js",
           "js/trumbowyg.min.js",
           "js/parsley.min.js"       
         ],

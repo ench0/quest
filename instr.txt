@@ -30,3 +30,6 @@ MIX_ENV=prod mix release --env=prod
 
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
 MIX_ENV=prod PORT=8080 elixir --detached -S mix phoenix.server
+
+
+yarn add jquery@2.2.4

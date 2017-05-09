@@ -39,7 +39,7 @@
 
 
 
-<script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
+<!--<script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>-->
 
 <!--  Scripts-->
 <%= if assigns[:form] do %>

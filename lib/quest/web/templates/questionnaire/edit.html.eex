@@ -1,0 +1,7 @@
+<h2>Edit Questionnaire <%= @questionnaire.title %></h2>
+
+<%= render "form.html", changeset: @changeset, questions: @questions, conn: @conn, questionnaire: @questionnaire,
+                        action: questionnaire_path(@conn, :update, @questionnaire) %>
+
+<span><%= link "Back", to: questionnaire_path(@conn, :index) %></span>
+<span><%= link "Show", to: questionnaire_path(@conn, :show, @questionnaire.id) %></span>

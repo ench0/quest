@@ -1,0 +1,84 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :info, class: "control-label" %>
+    <%= textarea f, :info, class: "form-control", id: "editor" %>
+    <%= error_tag f, :info %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :tags, class: "control-label" %>
+    <%= text_input f, :tags, value: Enum.join(@questionnaire.tags, ", "), class: "form-control" %>
+    <% IO.puts "===" %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :status, class: "control-label" %>
+    <%= select f, :status, ["Public": "public", "Private": "private", "Unlisted": "unlisted", "Locked": "locked", "Scheduled": "scheduled"], class: "form-control" %>
+    <%= error_tag f, :status %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Info</th>
+      <th>Content</th>
+      <th>Order</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Active</th>
+      <th>Inline</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for question <- @questions do %>
+      <%  info = HtmlSanitizeEx.strip_tags(question.info) 
+              |> String.split
+              |> Enum.slice(0..3)
+              |> Enum.map(fn(x) -> [x<>" "] end)
+              |> List.to_string %>
+
+      <tr>
+        <td><%= question.id %></td>
+        <td><%= question.title %></td>
+        <td><%= info %></td>
+        <td><%= question.content %></td>
+        <td><%= question.order %></td>
+        <td><%= question.type %></td>
+        <td><%= question.required %></td>
+        <td><%= question.active %></td>
+        <td><%= question.inline %></td>
+
+        <td class="text-right">
+          <span><%= link "Show", to: question_path(@conn, :show, question), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Edit", to: question_path(@conn, :edit, question), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete", to: question_path(@conn, :delete, question), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<span><%= link "New question", to: question_path(@conn, :new, "questionnaire_id": @questionnaire.id) %></span>

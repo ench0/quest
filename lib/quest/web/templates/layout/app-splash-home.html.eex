@@ -1,0 +1,4 @@
+<div>
+  <h1>[ Semantic Questionnaires ]</h1>
+  <p><i class="ion-android-arrow-forward"></i> <%= link "Click Here for Pilot Study", to: questionnaire_path(@conn, :show, 1) %> <i class="ion-android-arrow-back"></i>
+</div>

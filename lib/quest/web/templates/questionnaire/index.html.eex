@@ -1,0 +1,32 @@
+<h2>Listing Questionnaires</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Info</th>
+      <th>Status</th>
+      <th>Tags</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for questionnaire <- @questionnaires do %>
+    <tr>
+      <td><%= questionnaire.title %></td>
+      <td><%= questionnaire.info %></td>
+      <td><%= questionnaire.status %></td>
+      <td><%= questionnaire.tags %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: questionnaire_path(@conn, :show, questionnaire), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: questionnaire_path(@conn, :edit, questionnaire), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: questionnaire_path(@conn, :delete, questionnaire), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Questionnaire", to: questionnaire_path(@conn, :new) %></span>

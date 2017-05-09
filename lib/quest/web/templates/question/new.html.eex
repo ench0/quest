@@ -1,0 +1,6 @@
+<h2>New Question for Qid <%= @questionnaire_id %></h2>
+
+<%= render "form.html", changeset: @changeset, questionnaires_list: @questionnaires_list, questionnaire_id: @questionnaire_id, orderdefault: @orderdefault,
+                        action: question_path(@conn, :create) %>
+
+<span><%= link "Back", to: question_path(@conn, :index) %></span>

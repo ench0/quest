@@ -1,0 +1,29 @@
+<h1>Thank tou for participating!</h1>
+
+<h3>Unique Identifier (UID): <strong><%= @submission.uid %></strong></h3>
+<p>Please write down your UID in case you wish to remove/review your submission at a later stage.</p>
+
+<h3>Your Answers:</h3>
+<!--
+<ul>
+  <%= for answer <- @submission.answers do %>
+    <li><%= elem(answer,0) %>: <%= elem(answer,1) %></li>
+  <% end %>
+</ul>
+-->
+<ul>
+  <%= for question <- @questions do %>
+    <%= if elem(question,1) == "radio" && elem(question,2) do %>
+      <li><strong><%= elem(question,0) %></strong>:<br /><%= elem(question,2) %></li>
+    <% end %>
+
+    <%= if elem(question,1) == "likert" && elem(question,2) do %>
+      <li><strong><%= elem(question,0) %></strong>:<br /><%= elem(question,2) %></li>
+    <% end %>
+
+    <%= if elem(question,1) == "open" && elem(question,2) do %>
+      <li><strong><%= elem(question,0) %></strong>:<br /><span style="margin-left: 2em"><%= elem(question,2) %></span></li>
+    <% end %>
+
+  <% end %>
+</ul>

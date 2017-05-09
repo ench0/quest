@@ -1,0 +1,38 @@
+<h2>Show Question</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @question.title %>
+  </li>
+
+  <li>
+    <strong>Info:</strong>
+    <%= @question.info %>
+  </li>
+
+  <li>
+    <strong>Order:</strong>
+    <%= @question.order %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @question.type %>
+  </li>
+
+  <li>
+    <strong>Required:</strong>
+    <%= @question.required %>
+  </li>
+
+  <li>
+    <strong>Inline:</strong>
+    <%= @question.inline %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: question_path(@conn, :edit, @question) %></span>
+<span><%= link "Back", to: questionnaire_path(@conn, :show, @question.questionnaire_id) %></span>

@@ -1,0 +1,77 @@
+<%= form_for @changeset, @action, [data_parsley_validate: "", id: "form"], fn f -> %>
+  <%= if @changeset.action do %>
+    <aside class="error">Oops, something went wrong! Please check the errors below!</aside><br />
+  <% end %>
+
+  <%# [qid, qtitle] = @questionnaires %>
+  <div class="form-group">
+    <%= label f, :questionnaire_id, class: "control-label" %>
+    <%= if @questionnaire_id do %>
+      <%= select f, :questionnaire_id, @questionnaires_list, selected: @questionnaire_id, class: "form-control" %>
+    <%= else %>
+      <%= select f, :questionnaire_id, @questionnaires_list, class: "form-control" %>
+    <% end %>
+    <%= error_tag f, :questionnaire_id %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :info, class: "control-label" %>
+    <%= textarea f, :info, rows: 3, class: "form-control" %>
+    <%= error_tag f, :info %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :type, class: "control-label" %>
+    <%= select f, :type, ["Text": "text", "Large text": "textarea", "List": "select", "Radio": "radio", "Choice": "tick", "Info": "info", "Open-ended": "open", "Special": "special", "Likert scale": "likert"], class: "form-control" %>
+    <%= error_tag f, :type %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :content, class: "control-label" %>
+    <%= if assigns[:question] do %>
+      <%= if @question.type == "likert" do %>
+        <%= textarea f, :content, rows: 3, class: "form-control", data_parsley_type: "number", type: "range", data_parsley_range: "[3, 15]" %>
+      <% else %>
+        <%= textarea f, :content, rows: 3, class: "form-control" %>
+      <% end %>
+    <%= else %>
+      <%= textarea f, :content, rows: 3, class: "form-control" %>
+    <% end %>
+    <%= error_tag f, :content %>
+  </div>
+
+  <div class="form-group">
+    <% if assigns[:orderdefault] do orderdefault = @orderdefault else orderdefault = 0 end %>
+    <%= label f, :order, class: "control-label" %>
+    <%= number_input f, :order, class: "form-control", value: orderdefault %>
+    <%= error_tag f, :order %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :required, class: "control-label" %>
+    <%= checkbox f, :required, class: "checkbox" %>
+    <%= error_tag f, :required %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :active, class: "control-label" %>
+    <%= checkbox f, :active, class: "checkbox" %>
+    <%= error_tag f, :active %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :inline, class: "control-label" %>
+    <%= checkbox f, :inline, class: "checkbox" %>
+    <%= error_tag f, :inline %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

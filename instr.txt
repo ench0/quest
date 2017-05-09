@@ -1,0 +1,32 @@
+mix phx.new quest
+
+mix phx.gen.html Main Questionnaire questionnaires title:string info:string status:string tags:array:string
+
+mix phx.gen.html Main Question questions title:string info:string order:integer type:string required:boolean inline:boolean questionnaire_id:references:questionnaires
+
+mix phx.gen.html Main Option options title:string order:integer question_id:references:questions
+
+mix phx.gen.html Main Submission submissions answers:map meta:map questionnaire_id:references:questionnaires
+
+mix phx.gen.html Static Page pages title:string slug:string body:string questionnaire_id:references:questionnaires menu:boolean active:boolean
+
+
+cd assets
+brunch build
+cd ..
+MIX_ENV=prod mix phx.digest
+mix release --env=prod
+
+
+
+MIX_ENV=prod mix release --env=prod
+
+=> Release successfully built!
+    You can run it in one of the following ways:
+      Interactive: rel/quest/bin/quest console
+      Foreground: rel/quest/bin/quest foreground
+      Daemon: rel/quest/bin/quest start
+
+
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+MIX_ENV=prod PORT=8080 elixir --detached -S mix phoenix.server

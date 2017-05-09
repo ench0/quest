@@ -1,0 +1,241 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
+body {
+    line-height: 1.7em;
+    color: #7f8c8d;
+    /*font-size: 14px;*/
+    /*font-family:  'Open Sans Condensed',"Lucida Grande", 'Helvetica Neue',Arial,Helvetica,sans-serif;*/
+    font-family:  'Open Sans',"Lucida Grande", 'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight: 300;
+    margin: 0;
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+    color: #34495e;
+}
+h4 {
+  border-bottom: 1px solid #7D7DFF;
+  font-size: 2em;
+}
+label.header {
+    color: #34495e;
+    font-size: 1.5em;
+}
+a {
+  color: #7D7DFF;
+}
+ul {
+  list-style: outside circle;
+  margin-left: 2em;
+}
+strong {
+  font-weight: 500;
+}
+/*FORM*/
+input, textarea, select, button {
+  font-size: 1em;
+  font-weight: 300;
+}
+label {
+  font-weight: 500;
+}
+.form-group {
+  padding: .25em 0;
+}
+
+/*IMG*/
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+main.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /*border: 3px solid #73AD21;*/
+}
+
+
+/*NAV*/
+nav {
+  position: fixed;
+  display: block;
+  /*height: 4em;*/
+  top:0;
+  margin: 0;
+  left: 0;
+  width: 100%;
+  /*background: rgba(0,0,0, .5);*/
+  color: #fff;
+  font-weight: 500;
+  z-index: 9999;
+  /*box-shadow: 0 0 1em rgba(0,0,0, 0.15)*/
+  transition: background .5s, box-shadow .5s;
+}
+nav.nav {
+  background: rgba(125,125,255, .85);
+}
+nav ul {
+  list-style: none;
+  padding: 0 1em;
+  margin: 0;
+}
+nav ul li {
+  display: table-cell;
+  padding: 0;
+  margin: 0;
+}
+nav ul li a{
+  display: block;
+  padding: 1em;
+  transition: background .5s, box-shadow .5s;
+}
+nav ul li a:hover {
+  background: #34495e;
+}
+nav ul li a, nav ul li a:hover {
+  color: #fff;
+}
+
+
+/*CONTENT*/
+section.main {
+    position: absolute;
+    top: 10rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    /*height: 100%;*/
+}
+section.main.home {
+  top: 32rem;
+}
+section div.content, aside {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1em;
+}
+footer {
+  background: rgba(125,125,255, .85);
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  font-size: 75%;
+}
+footer a, footer a:hover {
+  color: #fff;
+}
+.help-block {
+  color: #903;
+}
+aside {
+  background: rgba(125,125,255, .85);
+  color: #fff;
+  padding: 1em;
+  border-radius: .5em;
+}
+aside.error {
+  background: rgba(255,0,255, .85);
+}
+aside:empty {
+    display: none;
+}
+section.splash.home {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  height: 30rem;
+  padding-top: 4rem;
+  margin: 0;
+  background: rgba(125,125,255, .85);
+  color: #fff;
+}
+section.splash.home div {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+section.splash.home div h1, section.splash.home div a {
+  color: #fff;
+}
+article {
+  padding: 1em;
+  border: 1px solid #e9e9e9;
+  border-radius: .5em;
+}
+article, .readmore{
+    /*width: 300px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;*/
+    border-bottom: 3px solid rgba(125,125,255, .15);
+    /*max-height:200px;*/
+    overflow:hidden;
+    text-overflow: ellipsis;
+    content: "";
+    position:relative;
+}
+article:before, .readmore:before {
+    content:'';
+    width:100%;
+    height:100%;    
+    position:absolute;
+    left:0;
+    top:0;
+    background:linear-gradient(transparent 50px, white);
+}
+article.nofade:before, .readmore.nofade:before {
+    background: none;
+}
+table.table {
+  font-size: 80%;
+}
+.row.items {
+  color: rgba(125,125,255, .85);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 80%;
+}
+.row.items .item {
+  margin-right: 1em;
+}
+.row.items .item span {
+  background: rgba(0,0,0, .25);
+  border-radius: .3em;
+  color: #fff;
+  padding: .35em .5em;
+  font-weight: 400;
+  font-size: 85%;
+}
+
+ul.questions {
+  /*border: 1px solid #ccc;*/
+  list-style: none;
+}
+ul.questions li {
+  margin: .5em 0;
+  padding: 1em;
+}
+ul.questions li:nth-child(even) {
+  background: #f3f3f3;
+}
+tr:nth-child(odd) {background: #FFF}

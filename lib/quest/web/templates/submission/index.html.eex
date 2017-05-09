@@ -1,0 +1,28 @@
+<h2>Listing Submissions</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Answers</th>
+      <th>Meta</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for submission <- @submissions do %>
+    <tr>
+      <td><%= submission.answers %></td>
+      <td><%= submission.meta %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: submission_path(@conn, :show, submission), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: submission_path(@conn, :edit, submission), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: submission_path(@conn, :delete, submission), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Submission", to: submission_path(@conn, :new) %></span>

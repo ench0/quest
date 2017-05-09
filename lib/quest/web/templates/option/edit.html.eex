@@ -1,0 +1,6 @@
+<h2>Edit Option</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: option_path(@conn, :update, @option) %>
+
+<span><%= link "Back", to: option_path(@conn, :index) %></span>

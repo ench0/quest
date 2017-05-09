@@ -1,0 +1,11 @@
+<ul>
+    <li>
+      <%= link "Home", to: page_path(@conn, :index) %>
+    </li>
+  <%= for page <- pages_menu do %>
+    <% [page, slug] = page %>
+    <li>
+      <%= link page, to: page_path(@conn, :show, slug) %>
+    </li>
+  <% end %>
+</ul>

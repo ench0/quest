@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "graceful-fs": "^4.1.11",
+    "jquery": "^3.2.1",
+    "parsley": "^0.1.0",
+    "readmore-js": "^2.1.0",
+    "trumbowyg": "^2.5.1"
+  }
+}

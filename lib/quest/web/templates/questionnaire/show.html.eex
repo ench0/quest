@@ -1,0 +1,177 @@
+<h1><%= @questionnaire.title %></h1>
+
+<div>
+  <article><%= raw(@questionnaire.info) %></article>
+</div>
+
+<br />
+
+<div class="row items content">
+  <div class="item">Status: <span><%= @questionnaire.status %></span></div>
+  <div class="item">Tags:
+    <%# tags = String.split(@questionnaire.tags, ",") %>
+    <% tags = @questionnaire.tags %>
+
+    <%= for tag <- tags do %>
+      <span><%= tag %></span>
+    <% end %>
+  </div>
+</div>
+
+<hr />
+
+  <% action = submission_path(@conn, :create) %>
+  <%= form_for @changeset, action, [class: "pure-form pure-form-stacked", data_parsley_validate: "", id: "form"], fn f -> %>
+  <%#= form_for @changeset, action, [class: "pure-form pure-form-stacked", onsubmit: "return validate(this);"], fn f -> %>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %> 
+
+    <ul class="questions">
+      <%= for question <- @questionnaire.main_questions do %>
+        <% content = String.split(String.trim(question.content), ["\r\n", ","]) %>
+        <%# title = String.to_atom Slugger.slugify(question.title) %>
+        <% title = String.to_atom(Integer.to_string(question.id)) %>
+        <% titlestring = question.title %>
+        <% if question.required do required? = true else required? = false end %>
+
+        <%= case question.type do %>
+
+          <%# -----TEXT----- %>
+          <%= "text" -> %>
+            <li class="form-group">
+              <%= label f, title, titlestring %>
+              <span><%= content %></span>
+              <%= if required? do text_input f, title, class: "pure-input-1", id: title, required: ""
+                  else text_input f, title, class: "pure-input-1", id: title end %>
+              <%#= error_tag f, title %>
+            </li>
+
+          <%# -----SPECIAL----- %>
+          <%= "special" -> %>
+            <li class="form-group">
+              <%= label f, title, titlestring %>
+              <%= for item <- content do %>
+                <% titlecb = String.to_atom Integer.to_string(question.id)<>"."<>item %>
+                <div>
+                  <%= if required? do select f, titlecb, 1..5, id: title, required: "", style: "inline; width: 4em;"
+                      else select f, titlecb, 1..5, id: title, style: "display:inline; width: 4em;" end %>
+                  <span style="display:inline;margin-right:1em;"><%= item %></span>
+                </div>
+              <% end %>
+              <%#= error_tag f, title %>
+            </li>
+          <%# -----TEXTAREA----- %>
+          <%= "textarea" -> %>
+            <li class="form-group">
+              <%= label f, title, titlestring %>
+              <span><%= content %></span>
+              <%= if required? do textarea f, title, rows: 3, class: "pure-input-1", id: title, required: "", data_parsley_trigger: "keyup", data_parsley_minlength: "10", data_parsley_maxlength: "500", data_parsley_minlength_message: "Unesite minimalno 10 slova/brojeva", data_parsley_maxlength_message: "Unesite maksimalno 500 slova/brojeva",data_parsley_validation_threshold: "10"
+                  else textarea f, title, rows: 3, class: "pure-input-1", id: title end %>
+              <%#= error_tag f, title %>
+            </li>
+          <%# -----RADIO----- %>
+          <%= "radio" -> %>
+            <li class="form-group">
+              <%= label f, title, titlestring %>
+              <%= for item <- content do %>
+                <%= if required? do radio_button f, title, item, id: title, required: ""
+                    else radio_button f, title, item, id: title end %>
+                    <span style="display:inline-block;margin-right:1em;"><%= item %></span>
+              <% end %>
+              <%#= error_tag f, title %>
+            </li>
+          <%# -----OPEN ENDED----- %>
+          <%= "open" -> %>
+            <li class="form-group">
+              <%= label f, title, titlestring %>
+              <%= for item <- content do %>
+                <div style="display:table-cell;"><%= if required? do radio_button f, title, item, id: title, required: "", class: "disable#{title}"
+                    else radio_button f, title, item, id: title, class: "disable#{title}" end %>
+                    <span style="display:inline-block;margin-right:1em;"><%= item %></span>   
+                </div>
+              <% end %>
+              <div style="display:block;">
+
+                <%= radio_button f, title, title, class: "disable#{title}", id: title, style: "display:inline-block;margin-right:.5em;" %>Please specify
+                <%= text_input f, title, disabled: "disabled", style: "display:inline-block;width:50%;margin-left: .5em;", id: "text#{title}" %>
+
+              </div>
+              <%#= error_tag f, title %>
+            </li>
+          <%# -----TICK----- %>
+          <%= "tick" -> %>
+            <li class="form-group">
+              <%= label f, title, titlestring, class: "header" %>
+              <div class="readmore"><%= raw(question.info) %></div>
+
+              <%= for item <- content do %>
+                <% titlecb = String.to_atom question.title<>"."<>item %>
+                <%= if required? do checkbox f, titlecb, checked_value: true, unchecked_value: false, id: title, required: ""#, data_parsley_mincheck: "2"
+                    else checkbox f, titlecb, checked_value: true, unchecked_value: false, id: title end %>
+                    <span style="display:inline-block;margin-right:1em;"><%= item %></span>
+                <%#= error_tag f, titlecb %>
+              <% end %>
+            </li>
+          <%# -----EMAIL----- %>
+          <%= "email" -> %>
+            <li class="form-group">
+              <%= label f, title, titlestring %>
+              <span><%= content %></span>
+              <%= if required? do email_input f, title, class: "pure-input-1", id: title, required: ""
+                  else email_input f, title, class: "pure-input-1", id: title end %>
+              <%#= error_tag f, title %>
+            </li>
+          <%# -----SELECT----- %>
+          <%= "select" -> %>
+            <li class="form-group">
+              <%= label f, title, titlestring %>
+              <%= if required? do select f, title, content, prompt: "Izaberite", class: "pure-input-1", id: title, required: ""
+                  else select f, title, content, prompt: "Izaberite", class: "pure-input-1#{required?}", id: title end %>
+              <%#= error_tag f, title %>
+            </li>
+          <%# -----INFO----- %>
+          <%= "info" -> %>
+            <div>
+              <h4><%= titlestring %></h4>
+              <em><%= content %></em>
+              <%#= if required? do text_input f, title, class: "pure-input-1", id: title, required: ""
+                  else text_input f, title, class: "pure-input-1", id: title end %>
+            </div>
+          <%# -----LIKERT----- %>
+          <%= "likert" -> %>
+            <li class="form-group">
+              <%= label f, title, titlestring %>
+              <% [content] = content %>
+              <% if TypeCheck.is_numeric(content) do content = String.to_integer content else content = 5 end %>
+
+              <strong>Strongly agree&nbsp;&nbsp;</strong>
+              <%= for item <- 1..content do %>
+                <%= if required? do radio_button f, title, item, id: title, required: ""
+                    else radio_button f, title, item, id: title end %>
+                    <span style="display:inline-block;margin-right:1em;"><%= item %></span>
+              <% end %>
+              <strong>Strongly disagree</strong>
+              <%#= error_tag f, title %>
+            </li>
+
+
+        <% end %>
+        <%#= question.id %>
+        <%#= question.title %>
+        <%#= question.vrsta %>
+        <%#= question.content %>
+        <%#= question.active %>
+
+
+
+      <% end %>
+    </ul>
+
+      <%= hidden_input f, :questionnaire_id, value: @questionnaire.id %>
+
+      <%= submit "Submit", class: "button" %>
+      <%= link "Cancel", to: questionnaire_path(@conn, :index), class: "button button-outline" %>
+    <% end %>

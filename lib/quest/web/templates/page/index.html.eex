@@ -1,0 +1,21 @@
+<div class="row">
+
+  <div class="column">
+    <h3>Why?</h3>
+    <p><strong>To learn</strong> more about conducting surveys and questionnaires. <strong>To understand</strong> about how to manipulate a raw data and display it. <strong>To dive</strong> into the semantic web with technologies behind it.</p>
+  </div>
+
+  <div class="column">
+    <h3>How?</h3>
+    <p><strong>By building</strong> my own questionnaire app. <strong>By making</strong> it secure and robust, while maintaining the simplicity for the end user. <strong>By doing</strong> everything from scratch.</p>
+  </div>
+
+</div>
+
+  <h2>Info</h2>
+  <p>This app is built with Elixir programming language, with help of Phoenix web framework. The website further uses jQuery, Milligram and Parsley.</p>
+  <p>The data is transferred over the Secure Socket Layer (SSL), not shared with third parties and completely anonimous.</p>
+
+  <h2>Credits</h2>
+  <p>Full acknowledgment goes to my supervisor Dr. David Lewis.</p>
+

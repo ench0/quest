@@ -1,0 +1,18 @@
+<h2>Show Option</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @option.title %>
+  </li>
+
+  <li>
+    <strong>Order:</strong>
+    <%= @option.order %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: option_path(@conn, :edit, @option) %></span>
+<span><%= link "Back", to: option_path(@conn, :index) %></span>

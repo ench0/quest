@@ -1,11 +1,15 @@
-<ul>
-    <li>
-      <%= link "Home", to: page_path(@conn, :index) %>
-    </li>
-  <%= for page <- pages_menu do %>
-    <% [page, slug] = page %>
-    <li>
-      <%= link page, to: page_path(@conn, :show, slug) %>
-    </li>
-  <% end %>
-</ul>
+<section>
+<div class="content" style="padding:0;">
+  <ul style="padding:0;">
+      <li>
+        <%= link "Home", to: page_path(@conn, :index) %>
+      </li>
+    <%= for page <- pages_menu do %>
+      <% [page, slug] = page %>
+      <li>
+        <%= link page, to: page_path(@conn, :show, slug) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+</section>

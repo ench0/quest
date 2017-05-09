@@ -72,7 +72,7 @@ defmodule Quest.Web.PageController do
       {:ok, page} ->
         conn
         |> put_flash(:info, "Page updated successfully.")
-        |> redirect(to: page_path(conn, :show, page))
+        |> redirect(to: page_path(conn, :show, page_params["slug"]))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", page: page, changeset: changeset)
     end

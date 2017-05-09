@@ -201,7 +201,7 @@ article:before, .readmore:before {
     position:absolute;
     left:0;
     top:0;
-    background:linear-gradient(transparent 50px, white);
+    background:linear-gradient(transparent 10px, white);
 }
 article.nofade:before, .readmore.nofade:before {
     background: none;

@@ -70,13 +70,13 @@
   <% end %>
 <% end %>
 
-<script src="<%= static_path(@conn, "/js/trumbowyg.min.js") %>"></script>
+<!--<script src="<%= static_path(@conn, "/js/trumbowyg.min.js") %>"></script>
 <script src="<%= static_path(@conn, "/js/script-trumb.js") %>"></script>
-<script src="<%= static_path(@conn, "/js/readmore.min.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/readmore.min.js") %>"></script>-->
 
 <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 
-<script src="<%= static_path(@conn, "/js/script.js") %>"></script>
+<!--<script src="<%= static_path(@conn, "/js/script.js") %>"></script>-->
 
 
 

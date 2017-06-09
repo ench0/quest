@@ -14,7 +14,7 @@
 
   <h2>Info</h2>
   <p>This app is built with Elixir programming language, with help of Phoenix web framework. The website further uses jQuery, Milligram and Parsley on the frontend side and Postgres as a database.</p>
-  <p>The data is transferred over the Secure Socket Layer (SSL), not shared with third parties and completely anonimous.</p>
+  <p>The data is not shared with third parties and completely anonimous.</p>
 
   <h2>Credits</h2>
   <p>Big thanks to my supervisor Dr. David Lewis, for directed study guidance and advice. Further credit to Dr. Alfredo Maldonaldo for valuable input in relation to the questions for my pilot study.</p>
